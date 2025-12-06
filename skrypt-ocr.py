@@ -5,9 +5,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from threading import Lock
 
 # Konfiguracja
-genai.configure(
-    api_key=os.environ.get("GEMINI_API_KEY", "AIzaSyCtm8s-kLk7K8BHXPCIJoSVwKyqbjORWPc")
-)
+genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
 model = genai.GenerativeModel("gemini-2.5-flash")
 
 # Ścieżki dostosowane do struktury projektu

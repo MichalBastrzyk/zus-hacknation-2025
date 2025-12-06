@@ -20,9 +20,7 @@ from pathlib import Path
 # KONFIGURACJA
 # =============================================================================
 
-genai.configure(
-    api_key=os.environ.get("GEMINI_API_KEY", "AIzaSyCtm8s-kLk7K8BHXPCIJoSVwKyqbjORWPc")
-)
+genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
 model = genai.GenerativeModel("gemini-2.0-flash-lite")
 
 # Ścieżki
