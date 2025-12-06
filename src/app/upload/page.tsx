@@ -14,11 +14,13 @@ import {
   FileUploadTrigger,
 } from "@/components/ui/file-upload"
 import { Button } from "@/components/ui/button"
+import { AccidentDecision } from "@/lib/validators"
+import { AnalysisResult } from "@/components/AnalysisResult"
 
 export default function FileUploadValidationDemo() {
   const [files, setFiles] = React.useState<File[]>([])
   const [isSending, setIsSending] = React.useState(false)
-  const [result, setResult] = React.useState<string | null>(null)
+  const [result, setResult] = React.useState<AccidentDecision | null>(null)
 
   const onFileValidate = React.useCallback(
     (file: File): string | null => {
@@ -78,9 +80,8 @@ export default function FileUploadValidationDemo() {
         return
       }
 
-      const data = await response.json()
-      const text = data?.result || "Brak odpowiedzi z analizy."
-      setResult(text)
+      const data: AccidentDecision | null = (await response.json()) ?? null
+      setResult(data)
       toast("Analiza zakończona.")
     } catch (err) {
       const message = err instanceof Error ? err.message : "Nieznany błąd"
@@ -148,11 +149,7 @@ export default function FileUploadValidationDemo() {
           Pliki są wysyłane z instrukcjami z bazy reguł do modelu Gemini.
         </p>
       </div>
-      {result && (
-        <div className="mt-4 rounded border bg-card p-4 text-sm whitespace-pre-wrap">
-          {result}
-        </div>
-      )}
+      {result && <AnalysisResult result={result} />}
     </FileUpload>
   )
 }
