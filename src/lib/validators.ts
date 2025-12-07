@@ -12,6 +12,43 @@ export const AccidentDecisionSchema = z.object({
       .describe("Confidence score between 0.0 and 1.0."),
   }),
 
+  extracted_data: z
+    .object({
+      injured_first_name: z
+        .string()
+        .nullable()
+        .describe("Imię poszkodowanego. Null jeśli nieznane."),
+      injured_last_name: z
+        .string()
+        .nullable()
+        .describe("Nazwisko poszkodowanego. Null jeśli nieznane."),
+      employer_name: z
+        .string()
+        .nullable()
+        .describe("Nazwa pracodawcy. Null jeśli nieznana."),
+      position: z
+        .string()
+        .nullable()
+        .describe("Stanowisko poszkodowanego. Null jeśli nieznane."),
+      accident_date: z
+        .string()
+        .nullable()
+        .describe("Data wypadku w formacie YYYY-MM-DD. Null jeśli nieznana."),
+      accident_place: z
+        .string()
+        .nullable()
+        .describe("Miejsce wypadku. Null jeśli nieznane."),
+      accident_description: z
+        .string()
+        .nullable()
+        .describe("Krótki opis przebiegu wypadku."),
+      accident_cause: z
+        .string()
+        .nullable()
+        .describe("Przyczyna wypadku. Null jeśli nieznana."),
+    })
+    .describe("Dane wyodrębnione z opisu zgłoszenia."),
+
   criteria_analysis: z.object({
     suddenness: z.object({
       met: z.boolean(),
