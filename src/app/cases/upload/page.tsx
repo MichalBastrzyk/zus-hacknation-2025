@@ -57,9 +57,9 @@ export default function FileUploadValidationDemo() {
         return "Dozwolone są tylko obrazy lub pliki PDF."
       }
 
-      const MAX_SIZE = 2 * 1024 * 1024 // 2MB
+      const MAX_SIZE = 5 * 1024 * 1024 // 5MB
       if (file.size > MAX_SIZE) {
-        return "Rozmiar pliku musi być mniejszy niż 2 MB."
+        return "Rozmiar pliku musi być mniejszy niż 5 MB."
       }
 
       return null
